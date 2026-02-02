@@ -1,0 +1,16 @@
+package net.superbia.caseopener.common.cases;
+
+public enum CaseType {
+    GAMMA_2CASE,
+    KILOWATT_CASE,
+    REVOLUTION_CASE,
+    DREAMS_AND_NIGHTMARES_CASE,
+    OPERATION_RIPTIDE_CASE,
+    SHATTERED_WEB_CASE,
+    PRISMA_2_CASE,
+    FRACTURE_CASE,
+    HORIZON_CASE,
+    SPECTRUM_CASE,
+    GLOVE_CASE,
+    CHROMA_CASE
+}
