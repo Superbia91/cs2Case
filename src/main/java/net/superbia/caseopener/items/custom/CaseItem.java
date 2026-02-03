@@ -9,6 +9,11 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.superbia.caseopener.common.cases.CaseType;
+import net.superbia.caseopener.loot.CaseLootRegistry;
+import net.superbia.caseopener.loot.DropEntry;
+
+import java.util.List;
+import java.util.Map;
 
 
 public class CaseItem extends Item {
@@ -40,6 +45,16 @@ public class CaseItem extends Item {
             user.displayClientMessage(Component.literal("ВЫ ОТКРЫЛИ КЕЙС"),true);
 
         }
+        CaseLootRegistry.giveMeAPoolByCaseType(caseType);
+        if(CaseLootRegistry.giveMeAPoolByCaseType(caseType).isEmpty()){
+
+            user.displayClientMessage(Component.literal("пусто"),true);
+
+        }else  user.displayClientMessage(Component.literal("не пусто"),true);
+
+
+
+
 
 
         return InteractionResultHolder.success(stack);
