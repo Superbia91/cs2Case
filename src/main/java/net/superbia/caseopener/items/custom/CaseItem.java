@@ -12,16 +12,19 @@ import net.superbia.caseopener.common.cases.CaseType;
 
 
 public class CaseItem extends Item {
-
+    private final CaseType caseType;
 
     public CaseItem(CaseType caseType, Properties properties) {
         super(properties);
+        this.caseType = caseType;
+        // CaseItem хранит CaseType
 
     }
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
         ItemStack stack = user.getItemInHand(hand);
+
 
 
         if(world.isClientSide()){
@@ -35,7 +38,9 @@ public class CaseItem extends Item {
         }else {
             stack.shrink(1);
             user.displayClientMessage(Component.literal("ВЫ ОТКРЫЛИ КЕЙС"),true);
+
         }
+
 
         return InteractionResultHolder.success(stack);
 
