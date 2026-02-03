@@ -30,27 +30,32 @@ public class CaseItem extends Item {
     public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
         ItemStack stack = user.getItemInHand(hand);
 
-
-
         if(world.isClientSide()){
             return InteractionResultHolder.pass(stack);
             //проверка на сервер/клиент
         }
 
-        if(user.getAbilities().instabuild){
-            // проверка на креатив
-            return InteractionResultHolder.success(stack);
-        }else {
-            stack.shrink(1);
-            user.displayClientMessage(Component.literal("ВЫ ОТКРЫЛИ КЕЙС"),true);
 
+        if(CaseLootRegistry.giveMeAPoolByCaseType(caseType).isEmpty()) {
+            user.displayClientMessage(Component.literal("пусто"), true);
+
+        }else{
+
+            if(user.getAbilities().instabuild){
+                // проверка на креатив
+                return InteractionResultHolder.success(stack);
+            }else {
+                stack.shrink(1);
+                user.displayClientMessage(Component.literal("ВЫ ОТКРЫЛИ КЕЙС"),true);
+
+
+            }
+
+
+
+            user.displayClientMessage(Component.literal("не пусто"+ CaseLootRegistry.giveMeAPoolByCaseType(caseType).size()),true);
         }
-        CaseLootRegistry.giveMeAPoolByCaseType(caseType);
-        if(CaseLootRegistry.giveMeAPoolByCaseType(caseType).isEmpty()){
 
-            user.displayClientMessage(Component.literal("пусто"),true);
-
-        }else  user.displayClientMessage(Component.literal("не пусто"),true);
 
 
 
@@ -58,6 +63,10 @@ public class CaseItem extends Item {
 
 
         return InteractionResultHolder.success(stack);
+
+
+
+
 
 
 

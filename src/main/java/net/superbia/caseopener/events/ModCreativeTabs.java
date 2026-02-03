@@ -60,6 +60,7 @@ public class ModCreativeTabs {
 
                                 output.accept(ModeItems.CASE_GAMMA_2.get());
                                 output.accept(ModeItems.KILOWATT_CASE.get());
+                                output.accept(ModeItems.REVOLUTION_CASE.get());
 
 
                             })

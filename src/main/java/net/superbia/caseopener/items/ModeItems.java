@@ -92,12 +92,17 @@ public class ModeItems {
     public static final RegistryObject<Item> KUKRI_KNIFE =
             ITEMS.register("kukriknife", () -> new KnifeItem(KNIFE_TIER, KNIFE_DAMAGE_BONUS, KNIFE_ATTACK_SPEED, knifeProps()));
 
+
+
     public static final RegistryObject<Item> CASE_GAMMA_2 = ITEMS.register("gamma2case",()
             -> new CaseItem(CaseType.GAMMA_2CASE, new Item.Properties().stacksTo(1).fireResistant()));
 
-
     public static final RegistryObject<Item>KILOWATT_CASE = ITEMS.register("kilowatt",()->
             new CaseItem(CaseType.KILOWATT_CASE,new Item.Properties().stacksTo(1).fireResistant()));
+
+
+    public static final RegistryObject<Item> REVOLUTION_CASE = ITEMS.register("revolutoncase",()->
+           new CaseItem(CaseType.REVOLUTION_CASE,new Item.Properties().stacksTo(1).fireResistant()));
 
 
 
