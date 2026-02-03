@@ -17,7 +17,7 @@ public class CaseItem extends Item {
     public CaseItem(CaseType caseType, Properties properties) {
         super(properties);
         this.caseType = caseType;
-        // CaseItem хранит CaseType
+        // CaseItem хранит CaseType и использует в use
 
     }
 
