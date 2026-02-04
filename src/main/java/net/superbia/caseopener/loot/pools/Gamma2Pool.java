@@ -8,9 +8,17 @@ import java.util.List;
 
 public class Gamma2Pool {
     public static final List<DropEntry> DROPS = List.of(
-            new DropEntry(ModeItems.KERAMBIT, Rarity.COMMON,10),
-            new DropEntry(ModeItems.BAYONET,Rarity.RARE,20),
-            new DropEntry(ModeItems.BUTTERFLY_KNIFE,Rarity.COMMON,5)
+            new DropEntry(ModeItems.KERAMBIT, Rarity.KNIFE,10),
+            new DropEntry(ModeItems.BAYONET,Rarity.KNIFE,20),
+            new DropEntry(ModeItems.FLIP_KNIFE,Rarity.KNIFE,10),
+            new DropEntry(ModeItems.GUT_KNIFE,Rarity.KNIFE,10),
+            new DropEntry(ModeItems.M9_BAYONET,Rarity.KNIFE,10),
+            new DropEntry(ModeItems.FALCHION_KNIFE,Rarity.KNIFE,10),
+            new DropEntry(ModeItems.HUNTSMAN_KNIFE,Rarity.KNIFE,10),
+            new DropEntry(ModeItems.BOWIE_KNIFE,Rarity.KNIFE,10),
+            new DropEntry(ModeItems.SHADOW_DAGGERS,Rarity.KNIFE,10)
+
+
     );
 
 }

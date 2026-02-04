@@ -53,7 +53,7 @@ public class CaseItem extends Item {
 
 
 
-            user.displayClientMessage(Component.literal("не пусто"+ CaseLootRegistry.giveMeAPoolByCaseType(caseType).size()),true);
+            user.displayClientMessage(Component.literal("не пусто"+ " " + CaseLootRegistry.giveMeAPoolByCaseType(caseType).size()),true);
         }
 
 
