@@ -11,6 +11,7 @@ import net.minecraft.world.level.Level;
 import net.superbia.caseopener.common.cases.CaseType;
 import net.superbia.caseopener.loot.CaseLootRegistry;
 import net.superbia.caseopener.loot.DropEntry;
+import net.superbia.caseopener.loot.DropRoller;
 
 import java.util.List;
 import java.util.Map;
@@ -35,25 +36,32 @@ public class CaseItem extends Item {
             //проверка на сервер/клиент
         }
 
-
-        if(CaseLootRegistry.giveMeAPoolByCaseType(caseType).isEmpty()) {
-            user.displayClientMessage(Component.literal("пусто"), true);
+        // проверка на пустоту пула
+        if(CaseLootRegistry.giveMeAPoolByCaseType(caseType)
+                .isEmpty()) {
+            user.displayClientMessage(Component.literal("пул не настроен"), true);
 
         }else{
 
             if(user.getAbilities().instabuild){
                 // проверка на креатив
-                return InteractionResultHolder.success(stack);
-            }else {
+                return InteractionResultHolder
+                        .success(stack);
+            }else {//если все проходит мы уменьшаем колличество кейса и "выдаем дроп"
+
+                ItemStack issuedСase = new ItemStack(DropRoller.giveDropRoll(CaseLootRegistry.giveMeAPoolByCaseType(caseType))
+                        .item
+                        .get());
+
+                if(user.getInventory().add(issuedСase)){
+
+                }else{
+                    user.drop(issuedСase,true);
+                }
+
                 stack.shrink(1);
-                user.displayClientMessage(Component.literal("ВЫ ОТКРЫЛИ КЕЙС"),true);
-
-
             }
 
-
-
-            user.displayClientMessage(Component.literal("не пусто"+ " " + CaseLootRegistry.giveMeAPoolByCaseType(caseType).size()),true);
         }
 
 
