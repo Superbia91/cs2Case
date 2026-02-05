@@ -11,6 +11,6 @@ public enum CaseType {
     FRACTURE_CASE,
     HORIZON_CASE,
     SPECTRUM_CASE,
-    GLOVE_CASE,
     CHROMA_CASE
 }
+//TODO Добавить все кейсы

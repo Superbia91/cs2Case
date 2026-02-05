@@ -42,4 +42,5 @@ public class CaseOpener {
         public static void onClientSetup(FMLClientSetupEvent event) {
         }
     }
+    //TODO перевод всех кейсрв и ножей
 }

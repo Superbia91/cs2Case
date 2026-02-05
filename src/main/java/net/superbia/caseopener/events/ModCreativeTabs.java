@@ -61,6 +61,10 @@ public class ModCreativeTabs {
                                 output.accept(ModeItems.CASE_GAMMA_2.get());
                                 output.accept(ModeItems.KILOWATT_CASE.get());
                                 output.accept(ModeItems.REVOLUTION_CASE.get());
+                                output.accept(ModeItems.DREAM_NIGHTMARE_CASE.get());
+                                output.accept(ModeItems.CHROMA_CASE.get());
+                                output.accept(ModeItems.SPECTRUM_2.get());
+                                output.accept(ModeItems.HORIZON_CASE.get());
 
 
                             })

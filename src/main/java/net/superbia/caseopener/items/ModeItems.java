@@ -104,6 +104,16 @@ public class ModeItems {
     public static final RegistryObject<Item> REVOLUTION_CASE = ITEMS.register("revolutoncase",()->
            new CaseItem(CaseType.REVOLUTION_CASE,new Item.Properties().stacksTo(1).fireResistant()));
 
+    public static final RegistryObject<Item>DREAM_NIGHTMARE_CASE = ITEMS.register("dreamnightmares",()->
+            new CaseItem(CaseType.DREAMS_AND_NIGHTMARES_CASE,new Item.Properties().stacksTo(1).fireResistant()));// TODO перевод на русский и анг
+
+    public static final RegistryObject<Item>CHROMA_CASE = ITEMS.register("chromecase",()->
+            new CaseItem(CaseType.CHROMA_CASE,new Item.Properties().stacksTo(1).fireResistant()));
+
+    public static final RegistryObject<Item>SPECTRUM_2 = ITEMS.register("spectrum",()->
+            new CaseItem(CaseType.SPECTRUM_CASE,new Item.Properties().stacksTo(1).fireResistant()));
+    public static final RegistryObject<Item>HORIZON_CASE = ITEMS.register("horizon",()->
+            new CaseItem(CaseType.HORIZON_CASE,new Item.Properties().stacksTo(1).fireResistant()));
 
 
 
