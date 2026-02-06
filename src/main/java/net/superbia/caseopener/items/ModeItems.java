@@ -41,9 +41,6 @@ public class ModeItems {
     public static final RegistryObject<Item> GUT_KNIFE =
             ITEMS.register("gutknife", () -> new KnifeItem(KNIFE_TIER, KNIFE_DAMAGE_BONUS, KNIFE_ATTACK_SPEED, knifeProps()));
 
-    public static final RegistryObject<Item> KARAMBIT =
-            ITEMS.register("karambit", () -> new KnifeItem(KNIFE_TIER, KNIFE_DAMAGE_BONUS, KNIFE_ATTACK_SPEED, knifeProps()));
-
     public static final RegistryObject<Item> M9_BAYONET =
             ITEMS.register("m9bayonet", () -> new KnifeItem(KNIFE_TIER, KNIFE_DAMAGE_BONUS, KNIFE_ATTACK_SPEED, knifeProps()));
 
@@ -112,7 +109,9 @@ public class ModeItems {
 
     public static final RegistryObject<Item>SPECTRUM_2 = ITEMS.register("spectrum",()->
             new CaseItem(CaseType.SPECTRUM_CASE,new Item.Properties().stacksTo(1).fireResistant()));
-    public static final RegistryObject<Item>HORIZON_CASE = ITEMS.register("horizon",()->
+
+
+    public static final RegistryObject<Item>HORIZON_CASE = ITEMS.register("horizoncase",()->
             new CaseItem(CaseType.HORIZON_CASE,new Item.Properties().stacksTo(1).fireResistant()));
 
 
