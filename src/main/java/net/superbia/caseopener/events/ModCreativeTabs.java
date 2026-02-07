@@ -18,11 +18,13 @@ import net.superbia.caseopener.items.ModeItems;
         modid = CaseOpener.MOD_ID,
         bus = Mod.EventBusSubscriber.Bus.MOD
 )
+//класс для создания отдельной вкладки под мод
 public class ModCreativeTabs {
+    //регестрируем тип для вкладки
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, CaseOpener.MOD_ID);
 
-
+    //регестрируем вкладку креатива, добавляем название и иконку + все добавляем все предметы
     public static final RegistryObject<CreativeModeTab> CASEOPENER_TAB =
             CREATIVE_MODE_TABS.register("caseopener_tab",
                     () -> CreativeModeTab.builder()

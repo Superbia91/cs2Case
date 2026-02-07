@@ -13,34 +13,111 @@ import net.superbia.caseopener.events.ModCreativeTabs;
 import net.superbia.caseopener.items.ModeItems;
 import org.slf4j.Logger;
 
+/**
+ * Главный класс мода.
+ *
+ * Точка входа Forge:
+ * - создаётся при загрузке мода
+ * - регистрирует все основные системы
+ * - подключает event bus’ы
+ *
+ * Здесь НЕ должна находиться игровая логика.
+ * Этот класс отвечает только за инициализацию.
+ */
 @Mod(CaseOpener.MOD_ID)
 public class CaseOpener {
 
+    /**
+     * modid мода.
+     * Используется:
+     * - при регистрации предметов
+     * - в ресурсах (assets/caseopener)
+     * - в аннотациях Forge
+     */
     public static final String MOD_ID = "caseopener";
+
+    /**
+     * Логгер мода.
+     * Используется для отладки и сообщений в консоль.
+     */
     private static final Logger LOGGER = LogUtils.getLogger();
 
+    /**
+     * Конструктор мода.
+     * Вызывается Forge при загрузке.
+     *
+     * Здесь происходит:
+     * - получение MOD event bus
+     * - регистрация предметов
+     * - регистрация креативной вкладки
+     * - подписка на события жизненного цикла
+     */
     public CaseOpener() {
+
+        // MOD event bus — используется для регистрации
+        // предметов, вкладок, блоков и других контентных вещей.
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        // регистрация вкладки и предметов
+        // Регистрация креативной вкладки мода
         ModCreativeTabs.register(modEventBus);
+
+        // Регистрация всех предметов мода
         ModeItems.register(modEventBus);
 
-        // слушатели
+        // Подписка на общий этап инициализации
         modEventBus.addListener(this::setup);
 
-        // общий event bus (пока можно оставить)
+        // Глобальный event bus MinecraftForge.
+        // Используется для игровых событий (тик, взаимодействия и т.п.).
+        // Сейчас напрямую не используется, но оставлен на будущее.
         MinecraftForge.EVENT_BUS.register(this);
     }
 
+    /**
+     * Общий этап инициализации мода.
+     *
+     * Вызывается на обеих сторонах (client/server).
+     * Подходит для:
+     * - сетапа сетевых пакетов
+     * - общих систем
+     *
+     * Сейчас пустой, так как core-логика кейсов
+     * не требует дополнительной инициализации.
+     */
     private void setup(final FMLCommonSetupEvent event) {
     }
 
-    @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    /**
+     * Клиентские события мода.
+     *
+     * Здесь должны находиться ТОЛЬКО client-side вещи:
+     * - GUI
+     * - рендеры
+     * - экраны
+     *
+     * Сейчас класс пустой и служит заготовкой
+     * для будущего GUI кейсов.
+     */
+    @Mod.EventBusSubscriber(
+            modid = MOD_ID,
+            bus = Mod.EventBusSubscriber.Bus.MOD,
+            value = Dist.CLIENT
+    )
     public static class ClientModEvents {
+
+        /**
+         * Клиентский этап инициализации.
+         *
+         * Используется для:
+         * - регистрации экранов
+         * - привязки GUI к меню
+         *
+         * Пока не используется.
+         */
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
         }
     }
-    //TODO перевод всех кейсрв и ножей
+
+
 }
