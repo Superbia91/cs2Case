@@ -53,7 +53,7 @@ public class CaseItem extends Item {
                         .item
                         .get());
 
-                stack.shrink(1);
+
                 user.sendSystemMessage(Component.literal("Вы получили ").append(issuedСase.getHoverName()));
                 if(user.getInventory().add(issuedСase)){
 
@@ -62,6 +62,7 @@ public class CaseItem extends Item {
                 }else{
                     user.drop(issuedСase,true);
                 }
+                stack.shrink(1);
 
 
             }
