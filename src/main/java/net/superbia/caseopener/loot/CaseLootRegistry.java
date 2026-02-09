@@ -36,7 +36,7 @@ public class CaseLootRegistry {
      */
     public static final Map<CaseType, List<DropEntry>> registryPools = Map.of(
             CaseType.GAMMA_2CASE, Gamma2Pool.DROPS,
-            CaseType.KILOWATT_CASE, DreamsNightmaresPool.DROPS, // TODO: проверить корректность пула для Kilowatt
+            CaseType.KILOWATT_CASE, KilowattPool.DROPS_KILOWATT,
             CaseType.REVOLUTION_CASE, RevolutionCasePool.DROPS,
             CaseType.DREAMS_AND_NIGHTMARES_CASE, DreamsNightmaresPool.DROPS,
             CaseType.CHROMA_CASE, ChromePool.DROPS_CHROME,

@@ -1,0 +1,56 @@
+{
+  "case_open": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "caseopener:case_open",
+        "volume": 1.0,
+        "pitch": 1.0
+      }
+    ]
+  },
+
+  "drop_common": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "caseopener:drop_common",
+        "volume": 1.0,
+        "pitch": 1.0
+      }
+    ]
+  },
+
+  "drop_rare": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "caseopener:drop_rare",
+        "volume": 1.0,
+        "pitch": 1.0
+      }
+    ]
+  },
+
+  "drop_epic": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "caseopener:drop_epic",
+        "volume": 1.0,
+        "pitch": 1.0
+      }
+    ]
+  },
+
+  "drop_knife": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "caseopener:drop_knife",
+        "volume": 1.0,
+        "pitch": 1.0
+      }
+    ]
+  }
+}

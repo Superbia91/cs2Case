@@ -28,7 +28,7 @@ public class ModCreativeTabs {
     public static final RegistryObject<CreativeModeTab> CASEOPENER_TAB =
             CREATIVE_MODE_TABS.register("caseopener_tab",
                     () -> CreativeModeTab.builder()
-                            .icon(() -> new ItemStack(ModeItems.TAB_ICON.get()))
+                            .icon(() -> new ItemStack(ModeItems.CASE_GAMMA_2.get()))
                             .title(Component.translatable("creativetab.caseopener"))
                             .displayItems((params, output) -> {
                                 output.accept(ModeItems.BAYONET.get());

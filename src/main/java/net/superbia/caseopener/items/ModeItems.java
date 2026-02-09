@@ -164,7 +164,7 @@ public class ModeItems {
                     () -> new CaseItem(
                             CaseType.DREAMS_AND_NIGHTMARES_CASE,
                             new Item.Properties().stacksTo(1).fireResistant()
-                    )); // TODO: добавить переводы (ru/en)
+                    ));
 
     public static final RegistryObject<Item> CHROMA_CASE =
             ITEMS.register("chromecase",
@@ -191,9 +191,6 @@ public class ModeItems {
      * Предмет-иконка для креативной вкладки мода.
      * Не используется в геймплее.
      */
-    public static final RegistryObject<Item> TAB_ICON =
-            ITEMS.register("tab_icon",
-                    () -> new Item(new Item.Properties()));
 
     /**
      * Регистрация предметов в Forge EventBus.
