@@ -10,7 +10,9 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.superbia.caseopener.common.cases.CaseType;
+import net.superbia.caseopener.common.rarity.Rarity;
 import net.superbia.caseopener.loot.CaseLootRegistry;
+import net.superbia.caseopener.loot.DropEntry;
 import net.superbia.caseopener.loot.DropRoller;
 import net.superbia.caseopener.sound.CaseSounds;
 
@@ -61,6 +63,7 @@ public class CaseItem extends Item {
         // ItemStack кейса, по которому игрок кликнул ПКМ.
         // Именно этот стек будет уменьшен при успешном открытии кейса.
         ItemStack stack = user.getItemInHand(hand);
+        DropEntry result = DropRoller.giveDropRoll(CaseLootRegistry.giveMeAPoolByCaseType(caseType));
 
         // Вся логика открытия кейса выполняется только на сервере.
         // Клиенту просто сообщаем, что действие обработано.
@@ -91,9 +94,13 @@ public class CaseItem extends Item {
                                 .item
                                 .get()
                 );
+                if(result.rarity == Rarity.KNIFE){
+                    world.playSound(null, user.getX(),user.getY(),user.getZ(),CaseSounds.DROP_KNIFE.get(), SoundSource.PLAYERS, 1f,1f);
+                }
 
 
-                world.playSound(null, user.getX(),user.getY(),user.getZ(),CaseSounds.DROP_KNIFE.get(), SoundSource.PLAYERS, 1f,1f);
+
+
 
 
                 // Уведомляем игрока о полученной награде.
