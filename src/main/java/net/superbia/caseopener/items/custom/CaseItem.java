@@ -62,6 +62,7 @@ public class CaseItem extends Item {
 
         // ItemStack кейса, по которому игрок кликнул ПКМ.
         // Именно этот стек будет уменьшен при успешном открытии кейса.
+        //создание переменной результат DropRoller
         ItemStack stack = user.getItemInHand(hand);
         DropEntry result = DropRoller.giveDropRoll(CaseLootRegistry.giveMeAPoolByCaseType(caseType));
 
@@ -94,9 +95,12 @@ public class CaseItem extends Item {
                                 .item
                                 .get()
                 );
-                if(result.rarity == Rarity.KNIFE){
-                    world.playSound(null, user.getX(),user.getY(),user.getZ(),CaseSounds.DROP_KNIFE.get(), SoundSource.PLAYERS, 1f,1f);
+                switch (result.rarity){
+                    case KNIFE -> world.playSound(null, user.getX(),user.getY(),user.getZ(),CaseSounds.DROP_KNIFE.get(), SoundSource.PLAYERS, 1f,1f);
+                    //TODO add all sounds
+                    //TODO GUI+animation
                 }
+//
 
 
 
