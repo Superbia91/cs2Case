@@ -222,13 +222,3 @@ It’s about:
 * and the moment the case opens.
 
 ---
-
-If you want, I can also make a **AAA-level GitHub README** with:
-
-* badges (Forge, version, status)
-* preview GIF section
-* installation guide
-* developer guide
-* architecture diagram
-
-That would make the project look like a professional public mod instantly.
