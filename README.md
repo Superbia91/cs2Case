@@ -1,4 +1,4 @@
----
+
 
 # CaseOpener
 
@@ -9,7 +9,7 @@ This mod treats cases as **interactive events**, combining logic, visuals, and s
 > A case is not just loot.
 > A case is a moment.
 
----
+
 
 ## ✨ Features
 
