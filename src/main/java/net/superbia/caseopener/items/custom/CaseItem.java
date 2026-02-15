@@ -1,5 +1,6 @@
 package net.superbia.caseopener.items.custom;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -62,9 +63,10 @@ public class CaseItem extends Item {
 
         // ItemStack кейса, по которому игрок кликнул ПКМ.
         // Именно этот стек будет уменьшен при успешном открытии кейса.
-        //создание переменной результат DropRoller
+        //Cоздание переменной результат DropRoller
         ItemStack stack = user.getItemInHand(hand);
         DropEntry result = DropRoller.giveDropRoll(CaseLootRegistry.giveMeAPoolByCaseType(caseType));
+        ChatFormatting color;
 
         // Вся логика открытия кейса выполняется только на сервере.
         // Клиенту просто сообщаем, что действие обработано.
@@ -96,6 +98,13 @@ public class CaseItem extends Item {
                                 .get()
                 );
                 switch (result.rarity){
+                    case COMMON -> color = ChatFormatting.GRAY;
+                    case RARE -> color = ChatFormatting.BLUE;
+                    case EPIC -> color = ChatFormatting.LIGHT_PURPLE;
+                    case KNIFE -> color = ChatFormatting.GOLD;
+                    default -> color = ChatFormatting.WHITE;
+                }
+                switch (result.rarity){
                     case KNIFE -> world.playSound(null, user.getX(),user.getY(),user.getZ(),CaseSounds.DROP_KNIFE.get(), SoundSource.PLAYERS, 1f,1f);
                     //TODO add all sounds
                     //TODO GUI+animation
@@ -111,7 +120,7 @@ public class CaseItem extends Item {
                 // Имя берётся из ItemStack (локализовано, корректно для UI).
                 user.sendSystemMessage(
                         Component.literal("Вы получили ")
-                                .append(issuedCase.getHoverName())
+                                .append(issuedCase.getHoverName().copy().withStyle(color))
                 );
 
                 // Пытаемся добавить награду в инвентарь.
