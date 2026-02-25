@@ -1,7 +1,10 @@
 package net.superbia.caseopener.items.custom;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.particles.ParticleType;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -15,6 +18,7 @@ import net.superbia.caseopener.common.rarity.Rarity;
 import net.superbia.caseopener.loot.CaseLootRegistry;
 import net.superbia.caseopener.loot.DropEntry;
 import net.superbia.caseopener.loot.DropRoller;
+import net.superbia.caseopener.particle.ModRegParticles;
 import net.superbia.caseopener.sound.CaseSounds;
 
 /**
@@ -59,30 +63,33 @@ public class CaseItem extends Item {
      * 7. Уменьшение количества кейсов
      */
     @Override
-    public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
+public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
 
-        // ItemStack кейса, по которому игрок кликнул ПКМ.
-        // Именно этот стек будет уменьшен при успешном открытии кейса.
-        //Cоздание переменной результат DropRoller
-        ItemStack stack = user.getItemInHand(hand);
-        DropEntry result = DropRoller.giveDropRoll(CaseLootRegistry.giveMeAPoolByCaseType(caseType));
-        ChatFormatting color;
+    // ItemStack кейса, по которому игрок кликнул ПКМ.
+    // Именно этот стек будет уменьшен при успешном открытии кейса.
+    //Cоздание переменной результат DropRoller
+    ItemStack stack = user.getItemInHand(hand);
+    ChatFormatting color;
 
-        // Вся логика открытия кейса выполняется только на сервере.
-        // Клиенту просто сообщаем, что действие обработано.
-        if (world.isClientSide()) {
-            return InteractionResultHolder.pass(stack);
-        }
+
+
+
+
+    // Вся логика открытия кейса выполняется только на сервере.
+    // Клиенту просто сообщаем, что действие обработано.
+    if (world instanceof ServerLevel serverLevel) {
+
+        var pool = CaseLootRegistry.giveMeAPoolByCaseType(caseType);
 
         // Получаем пул дропа по типу кейса.
         // Если пул пуст — кейс считается не настроенным.
-        if (CaseLootRegistry.giveMeAPoolByCaseType(caseType).isEmpty()) {
+        if (pool.isEmpty()) {
             user.displayClientMessage(
                     Component.literal("пул не настроен"),
                     true
             );
         } else {
-
+            DropEntry result = DropRoller.giveDropRoll(pool);
             // В креативе кейс не расходуется и награда не выдаётся.
             if (user.getAbilities().instabuild) {
                 return InteractionResultHolder.success(stack);
@@ -90,13 +97,17 @@ public class CaseItem extends Item {
 
                 // Выполняем ролл по весам и создаём ItemStack награды.
                 ItemStack issuedCase = new ItemStack(
-                        DropRoller
-                                .giveDropRoll(
-                                        CaseLootRegistry.giveMeAPoolByCaseType(caseType)
-                                )
-                                .item
-                                .get()
+                        result.item.get()
                 );
+
+                switch (result.rarity){
+                    case KNIFE -> serverLevel.sendParticles(ModRegParticles.CUSTOM_PARTICLE.get(),
+                            user.getX(),
+                            user.getY()+1
+                            ,user.getZ(),100,0.3,0.3,0.3,0.05);
+                }
+
+
                 switch (result.rarity){
                     case COMMON -> color = ChatFormatting.GRAY;
                     case RARE -> color = ChatFormatting.BLUE;
@@ -104,16 +115,12 @@ public class CaseItem extends Item {
                     case KNIFE -> color = ChatFormatting.GOLD;
                     default -> color = ChatFormatting.WHITE;
                 }
+                world.playSound(null,user.getX(),user.getY(),user.getZ(),CaseSounds.CASE_OPEN.get(),SoundSource.PLAYERS,1f,1f);
                 switch (result.rarity){
                     case KNIFE -> world.playSound(null, user.getX(),user.getY(),user.getZ(),CaseSounds.DROP_KNIFE.get(), SoundSource.PLAYERS, 1f,1f);
                     //TODO add all sounds
                     //TODO GUI+animation
                 }
-//
-
-
-
-
 
 
                 // Уведомляем игрока о полученной награде.
@@ -138,4 +145,8 @@ public class CaseItem extends Item {
 
         return InteractionResultHolder.success(stack);
     }
+
+
+    return InteractionResultHolder.pass(stack);
+}
 }
