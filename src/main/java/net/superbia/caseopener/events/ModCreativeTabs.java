@@ -3,16 +3,13 @@ package net.superbia.caseopener.events;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import net.superbia.caseopener.CaseOpener;
-import net.superbia.caseopener.items.ModeItems;
+import net.superbia.caseopener.items.ModItems;
 
 @Mod.EventBusSubscriber(
         modid = CaseOpener.MOD_ID,
@@ -28,29 +25,29 @@ public class ModCreativeTabs {
     public static final RegistryObject<CreativeModeTab> CASEOPENER_TAB =
             CREATIVE_MODE_TABS.register("caseopener_tab",
                     () -> CreativeModeTab.builder()
-                            .icon(() -> new ItemStack(ModeItems.CASE_GAMMA_2.get()))
+                            .icon(() -> new ItemStack(ModItems.CASE_GAMMA_2.get()))
                             .title(Component.translatable("creativetab.caseopener"))
                             .displayItems((params, output) -> {
-                                output.accept(ModeItems.BAYONET.get());
-                                output.accept(ModeItems.FLIP_KNIFE.get());
-                                output.accept(ModeItems.GUT_KNIFE.get());
-                                output.accept(ModeItems.KERAMBIT.get());
-                                output.accept(ModeItems.M9_BAYONET.get());
-                                output.accept(ModeItems.HUNTSMAN_KNIFE.get());
-                                output.accept(ModeItems.FALCHION_KNIFE.get());
-                                output.accept(ModeItems.BOWIE_KNIFE.get());
-                                output.accept(ModeItems.BUTTERFLY_KNIFE.get());
-                                output.accept(ModeItems.SHADOW_DAGGERS.get());
-                                output.accept(ModeItems.NAVAJA_KNIFE.get());
-                                output.accept(ModeItems.STILETTO_KNIFE.get());
-                                output.accept(ModeItems.TALON_KNIFE.get());
-                                output.accept(ModeItems.URSUS_KNIFE.get());
-                                output.accept(ModeItems.NOMAD_KNIFE.get());
-                                output.accept(ModeItems.SKELETON_KNIFE.get());
-                                output.accept(ModeItems.PARACORD_KNIFE.get());
-                                output.accept(ModeItems.SURVIVAL_KNIFE.get());
-                                output.accept(ModeItems.CLASSIC_KNIFE.get());
-                                output.accept(ModeItems.KUKRI_KNIFE.get());
+                                output.accept(ModItems.BAYONET.get());
+                                output.accept(ModItems.FLIP_KNIFE.get());
+                                output.accept(ModItems.GUT_KNIFE.get());
+                                output.accept(ModItems.KERAMBIT.get());
+                                output.accept(ModItems.M9_BAYONET.get());
+                                output.accept(ModItems.HUNTSMAN_KNIFE.get());
+                                output.accept(ModItems.FALCHION_KNIFE.get());
+                                output.accept(ModItems.BOWIE_KNIFE.get());
+                                output.accept(ModItems.BUTTERFLY_KNIFE.get());
+                                output.accept(ModItems.SHADOW_DAGGERS.get());
+                                output.accept(ModItems.NAVAJA_KNIFE.get());
+                                output.accept(ModItems.STILETTO_KNIFE.get());
+                                output.accept(ModItems.TALON_KNIFE.get());
+                                output.accept(ModItems.URSUS_KNIFE.get());
+                                output.accept(ModItems.NOMAD_KNIFE.get());
+                                output.accept(ModItems.SKELETON_KNIFE.get());
+                                output.accept(ModItems.PARACORD_KNIFE.get());
+                                output.accept(ModItems.SURVIVAL_KNIFE.get());
+                                output.accept(ModItems.CLASSIC_KNIFE.get());
+                                output.accept(ModItems.KUKRI_KNIFE.get());
 
 
 
@@ -60,13 +57,13 @@ public class ModCreativeTabs {
 
 
 
-                                output.accept(ModeItems.CASE_GAMMA_2.get());
-                                output.accept(ModeItems.KILOWATT_CASE.get());
-                                output.accept(ModeItems.REVOLUTION_CASE.get());
-                                output.accept(ModeItems.DREAM_NIGHTMARE_CASE.get());
-                                output.accept(ModeItems.CHROMA_CASE.get());
-                                output.accept(ModeItems.SPECTRUM_2.get());
-                                output.accept(ModeItems.HORIZON_CASE.get());
+                                output.accept(ModItems.CASE_GAMMA_2.get());
+                                output.accept(ModItems.KILOWATT_CASE.get());
+                                output.accept(ModItems.REVOLUTION_CASE.get());
+                                output.accept(ModItems.DREAM_NIGHTMARE_CASE.get());
+                                output.accept(ModItems.CHROMA_CASE.get());
+                                output.accept(ModItems.SPECTRUM_2.get());
+                                output.accept(ModItems.HORIZON_CASE.get());
 
 
                             })

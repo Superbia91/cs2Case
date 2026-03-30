@@ -23,7 +23,7 @@ import net.superbia.caseopener.items.custom.KnifeItem;
  * Этот класс — единственная точка, где Forge "узнаёт",
  * какие Item существуют в моде.
  */
-public class ModeItems {
+public class ModItems {
 
     /**
      * Общие параметры ножей.

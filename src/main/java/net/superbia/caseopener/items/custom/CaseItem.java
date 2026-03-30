@@ -1,6 +1,7 @@
 package net.superbia.caseopener.items.custom;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
@@ -10,9 +11,12 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.vehicle.Minecart;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.MinecartItem;
 import net.minecraft.world.level.Level;
+import net.superbia.caseopener.client.screen.CaseOpenScreen;
 import net.superbia.caseopener.common.cases.CaseType;
 import net.superbia.caseopener.common.rarity.Rarity;
 import net.superbia.caseopener.loot.CaseLootRegistry;
@@ -67,7 +71,6 @@ public InteractionResultHolder<ItemStack> use(Level world, Player user, Interact
 
     // ItemStack кейса, по которому игрок кликнул ПКМ.
     // Именно этот стек будет уменьшен при успешном открытии кейса.
-    //Cоздание переменной результат DropRoller
     ItemStack stack = user.getItemInHand(hand);
     ChatFormatting color;
 
@@ -77,12 +80,18 @@ public InteractionResultHolder<ItemStack> use(Level world, Player user, Interact
 
     // Вся логика открытия кейса выполняется только на сервере.
     // Клиенту просто сообщаем, что действие обработано.
-    if (world instanceof ServerLevel serverLevel) {
+        if (world.isClientSide) {
+            Minecraft.getInstance().setScreen(new CaseOpenScreen(256,166,caseType));
+            return InteractionResultHolder.success(stack);
+        }
 
+    if (world instanceof ServerLevel serverLevel) {
+        //Cоздание переменной результат DropRoller
         var pool = CaseLootRegistry.giveMeAPoolByCaseType(caseType);
 
         // Получаем пул дропа по типу кейса.
         // Если пул пуст — кейс считается не настроенным.
+
         if (pool.isEmpty()) {
             user.displayClientMessage(
                     Component.literal("пул не настроен"),
@@ -96,10 +105,11 @@ public InteractionResultHolder<ItemStack> use(Level world, Player user, Interact
             } else {
 
                 // Выполняем ролл по весам и создаём ItemStack награды.
+
                 ItemStack issuedCase = new ItemStack(
                         result.item.get()
                 );
-
+                //В случае выпадения ножа, мы спавним кастомный партикл
                 switch (result.rarity){
                     case KNIFE -> serverLevel.sendParticles(ModRegParticles.CUSTOM_PARTICLE.get(),
                             user.getX(),
@@ -107,7 +117,7 @@ public InteractionResultHolder<ItemStack> use(Level world, Player user, Interact
                             ,user.getZ(),100,0.3,0.3,0.3,0.05);
                 }
 
-
+                //  в зависимости от редкости дропа, передаем переменной color подходящий цвет
                 switch (result.rarity){
                     case COMMON -> color = ChatFormatting.GRAY;
                     case RARE -> color = ChatFormatting.BLUE;
@@ -115,7 +125,16 @@ public InteractionResultHolder<ItemStack> use(Level world, Player user, Interact
                     case KNIFE -> color = ChatFormatting.GOLD;
                     default -> color = ChatFormatting.WHITE;
                 }
-                world.playSound(null,user.getX(),user.getY(),user.getZ(),CaseSounds.CASE_OPEN.get(),SoundSource.PLAYERS,1f,1f);
+                // проигрываем звук открытия кейса после нажатия на сам кейс
+                world.playSound(null,
+                        user.getX(),
+                        user.getY(),
+                        user.getZ(),
+                        CaseSounds.CASE_OPEN.get(),
+                        SoundSource.PLAYERS,
+                        1f,
+                        1f);
+                //в зависимости от
                 switch (result.rarity){
                     case KNIFE -> world.playSound(null, user.getX(),user.getY(),user.getZ(),CaseSounds.DROP_KNIFE.get(), SoundSource.PLAYERS, 1f,1f);
                     //TODO add all sounds

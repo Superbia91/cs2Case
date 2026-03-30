@@ -12,7 +12,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.superbia.caseopener.events.ModCreativeTabs;
 import net.superbia.caseopener.particle.ModRegParticles;
 import net.superbia.caseopener.sound.CaseSounds;
-import net.superbia.caseopener.items.ModeItems;
+import net.superbia.caseopener.items.ModItems;
 import org.slf4j.Logger;
 
 /**
@@ -66,7 +66,7 @@ public class CaseOpener {
         ModRegParticles.register(modEventBus);
 
         // Регистрация всех предметов мода
-        ModeItems.register(modEventBus);
+        ModItems.register(modEventBus);
 
         // Подписка на общий этап инициализации
         modEventBus.addListener(this::setup);

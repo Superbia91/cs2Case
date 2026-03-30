@@ -16,7 +16,7 @@ public class KnifeParticle extends TextureSheetParticle {
         this.friction = 0.98f;
         this.lifetime = 80;
 
-        // можно тут, но лучше также обновлять в tick()
+
         this.setSpriteFromAge(spriteSet);
     }
 
